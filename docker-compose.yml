@@ -1,0 +1,19 @@
+version: "3.5"
+services:
+  https-proxy:
+    image: nginx
+    network_mode: "host"
+    ports:
+      - 8081:8081
+      - 443:443
+      - 80:80
+
+    volumes:
+      - ./nginx:/etc/nginx:ro
+      - ./ssl:/etc/ssl:ro
+      - ./html:/usr/share/nginx/html:ro
+
+  echo-service:
+    image: vad1mo/hello-world-rest
+    ports:
+      - 8080:5050
