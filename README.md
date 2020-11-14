@@ -1,13 +1,13 @@
 #Self signed certs
 First need to generate the self signed certificates using the helper script generateSelfSignedCerts.sh
 
-This is based on teh complete explanation provided in https://www.humankode.com/ssl/create-a-selfsigned-certificate-for-nginx-in-5-minutes
+This is based on the complete explanation provided in https://www.humankode.com/ssl/create-a-selfsigned-certificate-for-nginx-in-5-minutes
 
 #Start up 
 Start the echo service and the reverse proxy using docker compose using start.sh
 
 Note: the nginx container uses "network_mode: "host"". In this mode the container shares the networking namespace of the host, directly exposing it to the outside world.
-This allows to reference localhost directly from nginx.conf file.
+This allows referencing localhost directly from nginx.conf file.
 
 #Trust the certificate in chrome (optional)
 certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n "localhost" -i localhost.crt
